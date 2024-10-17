@@ -26,27 +26,41 @@ void UGFormUniversalGridPanel::OnWidgetRebuilt()
 			//Add the functionality for when a Multiple Choice Box is selected
 			CastedChild->OnMultipleChoiceBoxChecked.AddUniqueDynamic(this, &UGFormUniversalGridPanel::OnCheckBoxSelected);
 
-			auto UniformGridSlot = Cast<UUniformGridSlot>(CastedChild->GetContentSlot());
+			if (auto UniformGridSlot = Cast<UUniformGridSlot>(CastedChild->Slot))
+			{
+				int GridRow = UniformGridSlot->GetRow();
+				int ColumnRow = UniformGridSlot->GetColumn();
 
-			KnownBoxes[UniformGridSlot->GetRow()].Add(CastedChild);
+				//Checking to see if the Row wanted is bigger than the Outer TArray
+				if (GridRow >= KnownBoxes.Num())
+				{
+					KnownBoxes.SetNum(GridRow+1);
+				}
+				//Checking to see if the Column is bigger than the Inner TArray
+				if (ColumnRow >= KnownBoxes[GridRow].Num())
+				{
+					KnownBoxes[GridRow].SetNumUninitialized(ColumnRow+1);
+				}
+
+				KnownBoxes[GridRow][ColumnRow] = CastedChild;
+			}
 		}
 	}
 }
 
 void UGFormUniversalGridPanel::OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSelection, bool Choice)
 {
-	for (TArray<UGFormMultipleChoiceBox*> Boxes : KnownBoxes)
+	int RowToGoThrough = Cast<UUniformGridSlot>(NewSelection->Slot)->GetRow();
+
+	for (UGFormMultipleChoiceBox* Box : KnownBoxes[RowToGoThrough])
 	{
-		for (UGFormMultipleChoiceBox* Box : Boxes)
+		if (Box == NewSelection)
 		{
-			if (Box == NewSelection)
-			{
-				WidgetData->SetEnteredData(Box->WidgetData->GetEnteredData());
-			}
-			else if (Box->GetCheckedState() == ECheckBoxState::Checked)
-			{
-				Box->SetCheckedState(ECheckBoxState::Unchecked);
-			}
+			WidgetData->SetEnteredData(Box->WidgetData->GetEnteredData());
+		}
+		else if (Box->GetCheckedState() == ECheckBoxState::Checked)
+		{
+			Box->SetCheckedState(ECheckBoxState::Unchecked);
 		}
 	}
 }
