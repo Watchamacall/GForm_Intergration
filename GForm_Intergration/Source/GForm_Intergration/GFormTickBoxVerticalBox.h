@@ -13,7 +13,7 @@ class UGFormTickBox;
  * 
  */
 UCLASS()
-class GFORM_INTERGRATION_API UGFormTickBoxVerticalBox : public UVerticalBox
+class GFORM_INTERGRATION_API UGFormTickBoxVerticalBox : public UVerticalBox, public IGFormInterface
 {
 	GENERATED_BODY()
 public:
@@ -39,5 +39,7 @@ protected:
 	*/
 	UFUNCTION()
 	virtual void OnTickBoxSelected(UGFormTickBox* NewSelection, bool Choice);
+
+	virtual TArray<FGFormInformation> GetFormDetails() override;
 
 };

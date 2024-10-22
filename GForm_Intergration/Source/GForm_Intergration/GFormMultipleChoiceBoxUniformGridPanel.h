@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GFormWidgetSecondaryClass.h"
 #include "Components/UniformGridPanel.h"
-#include "GFormUniversalGridPanel.generated.h"
+#include "GFormMultipleChoiceBoxUniformGridPanel.generated.h"
 
 class GFormMultipleChoiceBox;
 
@@ -13,7 +13,7 @@ class GFormMultipleChoiceBox;
  * 
  */
 UCLASS()
-class GFORM_INTERGRATION_API UGFormUniversalGridPanel : public UUniformGridPanel
+class GFORM_INTERGRATION_API UGFormMultipleChoiceBoxUniformGridPanel : public UUniformGridPanel, public IGFormInterface
 {
 	GENERATED_BODY()
 
@@ -34,4 +34,5 @@ protected:
 	UFUNCTION()
 	virtual void OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSelection, bool Choice);
 
+	virtual TArray<FGFormInformation> GetFormDetails() override;
 };

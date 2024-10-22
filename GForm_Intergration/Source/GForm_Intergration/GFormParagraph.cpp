@@ -21,5 +21,7 @@ void UGFormParagraph::SynchronizeProperties()
 
 void UGFormParagraph::GFormTextCommitted(const FText& NewText)
 {
-	WidgetData->SetEnteredData(NewText);
+	WidgetData->GetAllEnteredData().Empty();
+
+	WidgetData->AddEnteredData(NewText);
 }

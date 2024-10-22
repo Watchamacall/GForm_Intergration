@@ -23,6 +23,8 @@ void UGFormShortAnswer::SynchronizeProperties()
 
 void UGFormShortAnswer::GFormTextCommitted(const FText& NewText)
 {
-	WidgetData->SetEnteredData(NewText);
+	WidgetData->GetAllEnteredData().Empty();
+
+	WidgetData->AddEnteredData(NewText);
 }
 

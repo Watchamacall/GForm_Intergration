@@ -25,6 +25,22 @@ void UGFormTickBoxHorizontalBox::OnWidgetRebuilt()
 
 void UGFormTickBoxHorizontalBox::OnTickBoxSelected(UGFormTickBox* NewSelection, bool Choice)
 {
-	Choice ? TickedBoxes.Add(NewSelection) : TickedBoxes.Remove(NewSelection);
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::FromInt(TickedBoxes.Num()));
+	Choice ? WidgetData->AddEnteredData(FText::FromString(NewSelection->WidgetData->GetAllEnteredData()[0])) : WidgetData->RemoveEnteredData(FText::FromString(NewSelection->WidgetData->GetAllEnteredData()[0]));
+}
+
+TArray<FGFormInformation> UGFormTickBoxHorizontalBox::GetFormDetails()
+{
+	TArray<FGFormInformation> ReturnArray;
+
+	/*
+	* For each Box that is ticked add it's:
+	*	Entry ID for the TickBox
+	*	Data from the TickBox
+	*/
+	for (auto TickedBox : TickedBoxes)
+	{
+		ReturnArray.Add(FGFormInformation(TickedBox->WidgetData->GetEntryID(), TickedBox->WidgetData->GetAllEnteredData()[0]));
+	}
+
+	return ReturnArray;
 }

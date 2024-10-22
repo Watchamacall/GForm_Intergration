@@ -15,7 +15,22 @@ void UGFormDropDownComboBoxString::OnWidgetRebuilt()
 
 void UGFormDropDownComboBoxString::ComboBoxValueChanged(FString SelectedItem, ESelectInfo::Type SelectionType)
 {
-	WidgetData->SetEnteredData(FText::FromString(SelectedItem));
+	WidgetData->GetAllEnteredData().Empty();
+	
+	WidgetData->AddEnteredData(FText::FromString(SelectedItem));
+}
+
+TArray<FGFormInformation> UGFormDropDownComboBoxString::GetFormDetails()
+{
+	/*
+	* Get the Entry ID from the WidgetData and link it to the EnteredData which is the option which has been chosen from the ComboBox Value
+	*/
+
+	TArray<FGFormInformation> ReturnArray;
+
+	ReturnArray.Add(FGFormInformation(WidgetData->GetEntryID(), WidgetData->GetAllEnteredData()[0]));
+	
+	return ReturnArray;
 }
 
 

@@ -35,11 +35,18 @@ void UGFormMultipleChoiceHorizontalBox::OnCheckBoxSelected(UGFormMultipleChoiceB
 	{
 		if (Box == NewSelection)
 		{
-			WidgetData->SetEnteredData(Box->WidgetData->GetEnteredData());
+			WidgetData->GetAllEnteredData().Empty();
+
+			WidgetData->AddEnteredData(FText::FromString(Box->WidgetData->GetAllEnteredData()[0]));
 		}
 		else if (Box->GetCheckedState() == ECheckBoxState::Checked)
 		{
 			Box->SetCheckedState(ECheckBoxState::Unchecked);
 		}
 	}
+}
+
+TArray<FGFormInformation> UGFormMultipleChoiceHorizontalBox::GetFormDetails()
+{
+	return TArray<FGFormInformation>();
 }

@@ -3,3 +3,7 @@
 
 #include "GFormInterface.h"
 
+TArray<FGFormInformation> IGFormInterface::GetFormDetails()
+{
+	return TArray<FGFormInformation>();
+}

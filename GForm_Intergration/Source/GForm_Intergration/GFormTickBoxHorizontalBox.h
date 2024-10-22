@@ -13,7 +13,7 @@ class UGFormTickBox;
  * 
  */
 UCLASS()
-class GFORM_INTERGRATION_API UGFormTickBoxHorizontalBox : public UHorizontalBox
+class GFORM_INTERGRATION_API UGFormTickBoxHorizontalBox : public UHorizontalBox, public IGFormInterface
 {
 	GENERATED_BODY()
 	
@@ -40,4 +40,6 @@ protected:
 	*/	
 	UFUNCTION()
 	virtual void OnTickBoxSelected(UGFormTickBox* NewSelection, bool Choice);
+
+	virtual TArray<FGFormInformation> GetFormDetails() override;
 };

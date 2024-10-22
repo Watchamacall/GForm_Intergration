@@ -1,14 +1,14 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "GFormUniversalGridPanel.h"
+#include "GFormMultipleChoiceBoxUniformGridPanel.h"
 #include "GFormMultipleChoiceBox.h"
 #include "Components/UniformGridSlot.h"
 #include "Blueprint/WidgetTree.h"
 #include "Components/CheckBox.h"
 
 
-void UGFormUniversalGridPanel::OnWidgetRebuilt()
+void UGFormMultipleChoiceBoxUniformGridPanel::OnWidgetRebuilt()
 {
 	Super::OnWidgetRebuilt();
 
@@ -24,7 +24,7 @@ void UGFormUniversalGridPanel::OnWidgetRebuilt()
 		if (UGFormMultipleChoiceBox* CastedChild = Cast<UGFormMultipleChoiceBox>(Children[i]))
 		{
 			//Add the functionality for when a Multiple Choice Box is selected
-			CastedChild->OnMultipleChoiceBoxChecked.AddUniqueDynamic(this, &UGFormUniversalGridPanel::OnCheckBoxSelected);
+			CastedChild->OnMultipleChoiceBoxChecked.AddUniqueDynamic(this, &UGFormMultipleChoiceBoxUniformGridPanel::OnCheckBoxSelected);
 
 			if (auto UniformGridSlot = Cast<UUniformGridSlot>(CastedChild->Slot))
 			{
@@ -39,16 +39,23 @@ void UGFormUniversalGridPanel::OnWidgetRebuilt()
 				//Checking to see if the Column is bigger than the Inner TArray
 				if (ColumnRow >= KnownBoxes[GridRow].Num())
 				{
-					KnownBoxes[GridRow].SetNumUninitialized(ColumnRow+1);
+					KnownBoxes[GridRow].SetNum(ColumnRow+1);
 				}
 
-				KnownBoxes[GridRow][ColumnRow] = CastedChild;
+				if (KnownBoxes[GridRow][ColumnRow])
+				{
+					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString("Multiple CheckBox ") + *CastedChild->GetName() + FString(" is set inside another Multiple CheckBox ") + *KnownBoxes[GridRow][ColumnRow]->GetName());
+				}
+				else
+				{
+					KnownBoxes[GridRow][ColumnRow] = CastedChild;
+				}
 			}
 		}
 	}
 }
 
-void UGFormUniversalGridPanel::OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSelection, bool Choice)
+void UGFormMultipleChoiceBoxUniformGridPanel::OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSelection, bool Choice)
 {
 	int RowToGoThrough = Cast<UUniformGridSlot>(NewSelection->Slot)->GetRow();
 
@@ -56,11 +63,31 @@ void UGFormUniversalGridPanel::OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSe
 	{
 		if (Box == NewSelection)
 		{
-			WidgetData->SetEnteredData(Box->WidgetData->GetEnteredData());
+			WidgetData->AddEnteredData(FText::FromString(*Box->WidgetData->GetAllEnteredData()[0]));
 		}
 		else if (Box->GetCheckedState() == ECheckBoxState::Checked)
 		{
 			Box->SetCheckedState(ECheckBoxState::Unchecked);
 		}
 	}
+}
+
+TArray<FGFormInformation> UGFormMultipleChoiceBoxUniformGridPanel::GetFormDetails()
+{
+	/*
+	* Get the Entry ID from the WidgetData and link it to the EnteredData which is the option which has been chosen from the ComboBox Value
+	*/
+
+	TArray<FGFormInformation> ReturnArray;
+
+	for (size_t Row = 0; Row < KnownBoxes.Num(); Row++)
+	{
+		for (size_t Column = 0; Column < KnownBoxes[Row].Num(); Column++)
+		{
+
+		}
+	}
+	ReturnArray.Add(FGFormInformation(WidgetData->GetEntryID(), WidgetData->GetAllEnteredData()[0]));
+
+	return ReturnArray; 
 }

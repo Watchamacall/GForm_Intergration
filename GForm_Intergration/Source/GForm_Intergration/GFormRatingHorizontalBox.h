@@ -13,7 +13,7 @@ class UGFormMultipleChoiceBox;
  * 
  */
 UCLASS()
-class GFORM_INTERGRATION_API UGFormRatingHorizontalBox : public UHorizontalBox
+class GFORM_INTERGRATION_API UGFormRatingHorizontalBox : public UHorizontalBox, public IGFormInterface
 {
 	GENERATED_BODY()
 
@@ -34,5 +34,7 @@ protected:
 	*/
 	UFUNCTION()
 	virtual void OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSelection, bool Choice);
+
+	virtual TArray<FGFormInformation> GetFormDetails() override;
 
 };

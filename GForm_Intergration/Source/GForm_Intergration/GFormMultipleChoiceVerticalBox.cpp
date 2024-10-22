@@ -35,7 +35,8 @@ void UGFormMultipleChoiceVerticalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox
 	{
 		if (Box == NewSelection)
 		{
-			WidgetData->SetEnteredData(Box->WidgetData->GetEnteredData());
+			WidgetData->GetAllEnteredData().Empty();
+			WidgetData->AddEnteredData(FText::FromString(Box->WidgetData->GetAllEnteredData()[0]));
 		}
 		else if (Box->GetCheckedState() == ECheckBoxState::Checked)
 		{

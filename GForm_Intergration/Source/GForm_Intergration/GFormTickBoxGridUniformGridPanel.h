@@ -4,33 +4,34 @@
 
 #include "CoreMinimal.h"
 #include "GFormWidgetSecondaryClass.h"
-#include "Components/ComboBoxString.h"
-#include "GFormDropDownComboBoxString.generated.h"
+#include "Components/UniformGridPanel.h"
+#include "GFormTickBoxGridUniformGridPanel.generated.h"
+
+class UGFormTickBox;
 
 /**
  * 
  */
 UCLASS()
-class GFORM_INTERGRATION_API UGFormDropDownComboBoxString : public UComboBoxString, public IGFormInterface
+class GFORM_INTERGRATION_API UGFormTickBoxGridUniformGridPanel : public UUniformGridPanel, public IGFormInterface
 {
 	GENERATED_BODY()
-	
-public:
+
+protected:
 	/*
 	* The Data Component which holds all information about the Form Instance
 	*/
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "GForm")
 	UGFormDataComponent* WidgetData;
 
-protected:
+	TArray<TArray<UGFormTickBox*>> KnownBoxes;
 
+protected:
 	virtual void OnWidgetRebuilt() override;
 
 	/*
 	* Called when a Multiple Choice Box has been triggered as "ON" and calls this to shut off the other choices
 	*/
 	UFUNCTION()
-	virtual void ComboBoxValueChanged(FString SelectedItem, ESelectInfo::Type SelectionType);
-
-	virtual TArray<FGFormInformation> GetFormDetails() override;
+	virtual void OnCheckBoxSelected(UGFormTickBox* NewSelection, bool Choice);
 };

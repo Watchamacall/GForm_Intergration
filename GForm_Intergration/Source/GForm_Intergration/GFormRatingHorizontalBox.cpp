@@ -30,7 +30,7 @@ void UGFormRatingHorizontalBox::OnWidgetRebuilt()
 			CastedChild->OnMultipleChoiceBoxChecked.AddUniqueDynamic(this, &UGFormRatingHorizontalBox::OnCheckBoxSelected);
 
 			//Setting the Data to be the number that it appears in the line
-			CastedChild->WidgetData->SetEnteredData(FText::FromString(FString::FromInt(i + 1)));
+			CastedChild->WidgetData->AddEnteredData(FText::FromString(FString::FromInt(i + 1)));
 
 			KnownBoxes.Add(CastedChild);
 		}
@@ -43,11 +43,26 @@ void UGFormRatingHorizontalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox* NewS
 	{
 		if (Box == NewSelection)
 		{
-			WidgetData->SetEnteredData(Box->WidgetData->GetEnteredData());
+			WidgetData->GetAllEnteredData().Empty();
+
+			WidgetData->AddEnteredData(FText::FromString(Box->WidgetData->GetAllEnteredData()[0]));
 		}
 		else if (Box->GetCheckedState() == ECheckBoxState::Checked)
 		{
 			Box->SetCheckedState(ECheckBoxState::Unchecked);
 		}
 	}
+}
+
+TArray<FGFormInformation> UGFormRatingHorizontalBox::GetFormDetails()
+{
+	/*
+	* Link's the Entry ID and the Entered Data based on what is in the WidgetData when calling this function. 
+	*/
+
+	TArray<FGFormInformation> ReturnArray;
+
+	ReturnArray.Add(FGFormInformation(WidgetData->GetEntryID(), WidgetData->GetAllEnteredData()[0]));
+
+	return ReturnArray;
 }
