@@ -25,7 +25,26 @@ void UGFormTickBoxHorizontalBox::OnWidgetRebuilt()
 
 void UGFormTickBoxHorizontalBox::OnTickBoxSelected(UGFormTickBox* NewSelection, bool Choice)
 {
-	Choice ? WidgetData->AddEnteredData(FText::FromString(NewSelection->WidgetData->GetAllEnteredData()[0])) : WidgetData->RemoveEnteredData(FText::FromString(NewSelection->WidgetData->GetAllEnteredData()[0]));
+	//If we add but we only have one element in the list
+	if (Choice && WidgetData->NumOfEntryData() == 1)
+	{
+		WidgetData->ReplaceEnteredData(0, NewSelection->WidgetData->GetEntryData(0).EntryData); 
+		return;
+	}
+	//If we remove but only have one element in the list
+	else if (!Choice && WidgetData->NumOfEntryData() == 1)
+	{
+		WidgetData->ReplaceEnteredData(0, "");
+		return;
+	}
+
+	//We have more than two elements in the array so do below
+
+	FString RowEntryID = WidgetData->GetEntryData(0).EntryID;
+
+	Choice ? 
+		WidgetData->AddEntryData(RowEntryID, NewSelection->WidgetData->GetEntryData(0).EntryData) :
+		WidgetData->AddEntryData(RowEntryID, NewSelection->WidgetData->GetEntryData(0).EntryData);
 }
 
 TArray<FGFormInformation> UGFormTickBoxHorizontalBox::GetFormDetails()
@@ -39,7 +58,7 @@ TArray<FGFormInformation> UGFormTickBoxHorizontalBox::GetFormDetails()
 	*/
 	for (auto TickedBox : TickedBoxes)
 	{
-		ReturnArray.Add(FGFormInformation(TickedBox->WidgetData->GetEntryID(), TickedBox->WidgetData->GetAllEnteredData()[0]));
+		/*ReturnArray.Add(FGFormInformation(TickedBox->WidgetData->GetEntryID(), TickedBox->WidgetData->GetAllEnteredData()[0]));*/
 	}
 
 	return ReturnArray;

@@ -2,3 +2,4 @@
 
 
 #include "GFormWidgetSecondaryClass.h"
+#include "GFormInterface.h"

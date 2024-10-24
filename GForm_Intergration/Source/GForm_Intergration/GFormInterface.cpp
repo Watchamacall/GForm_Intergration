@@ -2,6 +2,7 @@
 
 
 #include "GFormInterface.h"
+#include "GFormWidgetSecondaryClass.h"
 
 TArray<FGFormInformation> IGFormInterface::GetFormDetails()
 {

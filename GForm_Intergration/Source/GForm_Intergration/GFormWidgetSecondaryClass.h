@@ -8,10 +8,33 @@
 
 #include "CoreMinimal.h"
 #include "Components/TextBlock.h"
-#include "GFormInterface.h"
 #include "Components/ActorComponent.h"
-#include "GFormInterface.h"
 #include "GFormWidgetSecondaryClass.generated.h"
+
+class UGFormInterface;
+
+USTRUCT(BlueprintType)
+struct FGFormInformation
+{
+    GENERATED_BODY()
+
+    // The unique identifier for the form entry
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "GForm")
+    FString EntryID;
+
+    // The data associated with the form entry
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "GForm")
+    FString EntryData;
+
+    // Default constructor
+    FGFormInformation()
+        : EntryID(TEXT("")), EntryData(TEXT("")) {}
+
+    // Parameterized constructor
+    FGFormInformation(const FString& InEntryID, const FString& InEntryData)
+        : EntryID(InEntryID), EntryData(InEntryData) {}
+};
+
 
 /**
  * 
@@ -23,18 +46,6 @@ class GFORM_INTERGRATION_API UGFormDataComponent : public UActorComponent
 
 public:
     /*
-    * The Text which holds the Data which will be transmitted
-    */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "GForm|Data")
-    TArray<FString> EnteredData;
-
-    /*
-    * The Entry ID used in the URL to send the data
-    */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "GForm|Entry")
-    TArray<FString> EntryID;
-
-    /*
     * A link of EntryID alongside the data to send
     */
     UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "GForm|Entry")
@@ -44,36 +55,84 @@ public:
     * Adds an instance of the inputted EntryID and the EnteredData
     */
     UFUNCTION(BlueprintCallable, Category = "GForm|Entry")
-    void AddEntryData(const FString& InEntryID, const FString& InEnteredData) { EntryData.Add(FGFormInformation(InEntryID, InEnteredData)); }
+    void AddEntryData(const FString& InEntryID, const FString& InEnteredData) { 
+        EntryData.Add(FGFormInformation(InEntryID, InEnteredData)); 
+    }
 
     /*
     * Removes an instance of the inputted EntryID and the EnteredData
     */
-    UFUNCTION(BlueprintCallable, EditAnywhere, Category = "GForm|Entry")
+    UFUNCTION(BlueprintCallable, Category = "GForm|Entry")
     void RemoveEntryData(const FString& InEntryID, const FString& InEnteredData)
     {
-        for (auto Data : EntryData)
+        for (size_t i = 0; i < EntryData.Num(); i++)
         {
+            auto Data = EntryData[i];
             if (Data.EntryID == InEntryID && Data.EntryData == InEnteredData)
             {
-                EntryData.Remove(Data);
+                EntryData.RemoveAt(i);
                 break;
             }
         }
     }
 
     /*
-    * Returns the EntryID
+    * Replaces the element at Index with the inputted InEnteredData
     */
     UFUNCTION(BlueprintCallable, Category = "GForm|Entry")
-    FString GetEntryID() const { return EntryID; }
+    void ReplaceEnteredData(const int Index, const FString& InEnteredData) {
+        if (EntryData.Num() < Index)
+        {
+            EntryData.SetNum(Index+1);
+        }
+        EntryData[Index].EntryData = InEnteredData;
+    }
 
-    UFUNCTION(BlueprintCallable, Category = "GForm|Data")
-    void AddEnteredData(FText Data) { EnteredData.Add(Data.ToString()); }
+    /*
+    * Replaces the entire EntryData of Index with the given EntryID and the EnteredData
+    */
+    UFUNCTION(BlueprintCallable, Category = "GForm|Entry")
+    void ReplaceEntryData(const int Index, const FString& InEntryID, const FString& InEnteredData) {
+        EntryData[Index] = FGFormInformation(InEntryID, InEnteredData);
+    }
 
-    UFUNCTION(BlueprintCallable, Category = "GForm|Data")
-    void RemoveEnteredData(FText DataToRemove) { EnteredData.Remove(DataToRemove.ToString()); }
+    /*
+    * Returns the FGFormInformation Data which is held in Index, if valid else returns empty FGFormInformation
+    */
+    UFUNCTION(BlueprintCallable, Category = "GForm|Entry")
+    FGFormInformation GetEntryData (int Index) const {
+        if (EntryData.IsValidIndex(Index))
+        {
+            return EntryData[Index];
+        }
+        return FGFormInformation();
+    }
 
-    UFUNCTION(BlueprintCallable, Category = "GForm|Data")
-    TArray<FString> GetAllEnteredData() const { return EnteredData; }
+    /*
+    * Returns true if EntryData is valid in given Index Slot
+    */
+    UFUNCTION(BlueprintCallable, Category = "GForm|Entry")
+    bool EntryDataExistsIndex(int Index) {
+        return EntryData.IsValidIndex(Index);
+    }
+
+    /*
+    * Returns true if InEntryID is found inside EntryData
+    */
+    UFUNCTION(BlueprintCallable, Category = "GForm|Entry")
+    bool EntryDataFromEntryID(const FString& InEntryID) {
+        for (auto Data : EntryData)
+        {
+            if (Data.EntryData == InEntryID)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    UFUNCTION(BlueprintCallable, Category = "GForm|Entry")
+    int NumOfEntryData() {
+        return EntryData.Num();
+    }
 };

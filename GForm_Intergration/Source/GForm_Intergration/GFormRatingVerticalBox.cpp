@@ -30,7 +30,7 @@ void UGFormRatingVerticalBox::OnWidgetRebuilt()
 			CastedChild->OnMultipleChoiceBoxChecked.AddUniqueDynamic(this, &UGFormRatingVerticalBox::OnCheckBoxSelected);
 
 			//Setting the Data to be the number that it appears in the line
-			CastedChild->WidgetData->AddEnteredData(FText::FromString(FString::FromInt(i + 1)));
+			CastedChild->WidgetData->ReplaceEnteredData(0, FString::FromInt(i + 1));
 
 			KnownBoxes.Add(CastedChild);
 		}
@@ -43,9 +43,7 @@ void UGFormRatingVerticalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSel
 	{
 		if (Box == NewSelection)
 		{
-			WidgetData->GetAllEnteredData().Empty();
-
-			WidgetData->AddEnteredData(FText::FromString(Box->WidgetData->GetAllEnteredData()[0]));
+			WidgetData->ReplaceEnteredData(0, *Box->WidgetData->GetEntryData(0).EntryData);
 		}
 		else if (Box->GetCheckedState() == ECheckBoxState::Checked)
 		{
@@ -62,7 +60,7 @@ TArray<FGFormInformation> UGFormRatingVerticalBox::GetFormDetails()
 
 	TArray<FGFormInformation> ReturnArray;
 
-	ReturnArray.Add(FGFormInformation(WidgetData->GetEntryID(), WidgetData->GetAllEnteredData()[0]));
+	//ReturnArray.Add(FGFormInformation(WidgetData->GetEntryID(), WidgetData->GetAllEnteredData()[0]));
 
 	return ReturnArray;
 }

@@ -53,6 +53,20 @@ void UGFormMultipleChoiceBoxUniformGridPanel::OnWidgetRebuilt()
 			}
 		}
 	}
+	
+	for (auto KnownRow : KnownBoxes)
+	{
+		FString RowEntryID = KnownRow[0]->WidgetData->GetEntryData(0).EntryID;
+
+		if (!RowEntryID.IsEmpty())
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString("The Entry ID for one of the rows is invalid. Ensure the First Element of each Row and Column has the correct information!"));
+		}
+		else
+		{
+			WidgetData->AddEntryData(RowEntryID, "");
+		}
+	}
 }
 
 void UGFormMultipleChoiceBoxUniformGridPanel::OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSelection, bool Choice)
@@ -63,7 +77,7 @@ void UGFormMultipleChoiceBoxUniformGridPanel::OnCheckBoxSelected(UGFormMultipleC
 	{
 		if (Box == NewSelection)
 		{
-			WidgetData->AddEnteredData(FText::FromString(*Box->WidgetData->GetAllEnteredData()[0]));
+			WidgetData->ReplaceEnteredData(RowToGoThrough, *Box->WidgetData->GetEntryData(0).EntryData);
 		}
 		else if (Box->GetCheckedState() == ECheckBoxState::Checked)
 		{
@@ -87,7 +101,7 @@ TArray<FGFormInformation> UGFormMultipleChoiceBoxUniformGridPanel::GetFormDetail
 
 		}
 	}
-	ReturnArray.Add(FGFormInformation(WidgetData->GetEntryID(), WidgetData->GetAllEnteredData()[0]));
+	//ReturnArray.Add(FGFormInformation(WidgetData->GetEntryID(), WidgetData->GetAllEnteredData()[0]));
 
 	return ReturnArray; 
 }

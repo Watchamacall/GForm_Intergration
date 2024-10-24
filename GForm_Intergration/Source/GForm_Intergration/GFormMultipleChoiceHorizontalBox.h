@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GFormWidgetSecondaryClass.h"
+#include "GFormInterface.h"
 #include "Components/HorizontalBox.h"
 #include "GFormMultipleChoiceHorizontalBox.generated.h"
 

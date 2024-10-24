@@ -61,7 +61,12 @@ void UGFormTickBoxGridUniformGridPanel::OnCheckBoxSelected(UGFormTickBox* NewSel
 	{
 		if (Box == NewSelection)
 		{
-			WidgetData->SetEnteredData(Box->WidgetData->GetEnteredData());
+			FString RowEntryID = KnownBoxes[RowToGoThrough][0]->WidgetData->GetEntryData(0).EntryID;
+
+			//Either Add or Remove Entry Data based what is has been chosen to do
+			Choice ? 
+				WidgetData->AddEntryData(RowEntryID, *Box->WidgetData->GetEntryData(0).EntryData) : 
+				WidgetData->RemoveEntryData(RowEntryID, *Box->WidgetData->GetEntryData(0).EntryData);
 		}
 	}
 }

@@ -38,7 +38,7 @@ void UGFormLinearScaleVerticalBox::OnWidgetRebuilt()
 			CastedChild->OnMultipleChoiceBoxChecked.AddUniqueDynamic(this, &UGFormLinearScaleVerticalBox::OnCheckBoxSelected);
 
 			//Setting the Data to be the number that it appears in the line
-			CastedChild->WidgetData->AddEnteredData(FText::FromString(FString::FromInt(i + (1 * MinimumValue))));
+			CastedChild->WidgetData->ReplaceEnteredData(0, FString::FromInt(i + (1 * MinimumValue)));
 
 			KnownBoxes.Add(CastedChild);
 		}
@@ -51,7 +51,7 @@ void UGFormLinearScaleVerticalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox* N
 	{
 		if (Box == NewSelection)
 		{
-			WidgetData->AddEnteredData(Box->WidgetData->GetAllEnteredData());
+			WidgetData->ReplaceEnteredData(0, *Box->WidgetData->GetEntryData(0).EntryData);
 		}
 		else if (Box->GetCheckedState() == ECheckBoxState::Checked)
 		{

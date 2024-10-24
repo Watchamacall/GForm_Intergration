@@ -15,9 +15,7 @@ void UGFormDropDownComboBoxString::OnWidgetRebuilt()
 
 void UGFormDropDownComboBoxString::ComboBoxValueChanged(FString SelectedItem, ESelectInfo::Type SelectionType)
 {
-	WidgetData->GetAllEnteredData().Empty();
-	
-	WidgetData->AddEnteredData(FText::FromString(SelectedItem));
+	WidgetData->ReplaceEnteredData(0, *SelectedItem);
 }
 
 TArray<FGFormInformation> UGFormDropDownComboBoxString::GetFormDetails()
@@ -28,7 +26,7 @@ TArray<FGFormInformation> UGFormDropDownComboBoxString::GetFormDetails()
 
 	TArray<FGFormInformation> ReturnArray;
 
-	ReturnArray.Add(FGFormInformation(WidgetData->GetEntryID(), WidgetData->GetAllEnteredData()[0]));
+	//ReturnArray.Add(FGFormInformation(WidgetData->GetEntryID(), WidgetData->GetAllEnteredData()[0]));
 	
 	return ReturnArray;
 }
