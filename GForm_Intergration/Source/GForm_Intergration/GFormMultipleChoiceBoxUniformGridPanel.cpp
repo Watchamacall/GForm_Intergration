@@ -78,6 +78,11 @@ void UGFormMultipleChoiceBoxUniformGridPanel::OnCheckBoxSelected(UGFormMultipleC
 		if (Box == NewSelection)
 		{
 			WidgetData->ReplaceEnteredData(RowToGoThrough, *Box->WidgetData->GetEntryData(0).EntryData);
+
+			if (!Choice)
+			{
+				Box->SetCheckedState(ECheckBoxState::Checked);
+			}
 		}
 		else if (Box->GetCheckedState() == ECheckBoxState::Checked)
 		{

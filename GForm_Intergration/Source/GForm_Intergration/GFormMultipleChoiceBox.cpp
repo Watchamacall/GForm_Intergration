@@ -20,6 +20,5 @@ void UGFormMultipleChoiceBox::SynchronizeProperties()
 
 void UGFormMultipleChoiceBox::CheckBoxDelegateRun(bool HasChecked)
 {
-	if (HasChecked)
 		OnMultipleChoiceBoxChecked.Broadcast(this, HasChecked);
 }

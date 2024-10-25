@@ -81,9 +81,10 @@ public:
     */
     UFUNCTION(BlueprintCallable, Category = "GForm|Entry")
     void ReplaceEnteredData(const int Index, const FString& InEnteredData) {
-        if (EntryData.Num() < Index)
+        if (EntryData.Num() <= Index)
         {
-            EntryData.SetNum(Index+1);
+            EntryData.SetNum(Index + 1);
+            EntryData[Index] = FGFormInformation();
         }
         EntryData[Index].EntryData = InEnteredData;
     }
@@ -131,6 +132,9 @@ public:
         return false;
     }
 
+    /*
+    * Returns the number of entries in the 
+    */
     UFUNCTION(BlueprintCallable, Category = "GForm|Entry")
     int NumOfEntryData() {
         return EntryData.Num();
