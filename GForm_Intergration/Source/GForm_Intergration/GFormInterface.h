@@ -15,7 +15,7 @@ struct FGFormInformation;
 UINTERFACE(MinimalAPI)
 class UGFormInterface : public UInterface
 {
-	GENERATED_BODY()	
+	GENERATED_BODY()
 };
 
 class GFORM_INTERGRATION_API IGFormInterface

@@ -23,3 +23,8 @@ void UGFormParagraph::GFormTextCommitted(const FText& NewText)
 {
 	WidgetData->ReplaceEnteredData(0, *NewText.ToString());
 }
+
+TArray<FGFormInformation> UGFormParagraph::GetFormDetails()
+{
+	return WidgetData->EntryData;
+}

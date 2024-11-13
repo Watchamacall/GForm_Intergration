@@ -25,8 +25,8 @@ void UGFormTickBoxHorizontalBox::OnWidgetRebuilt()
 
 void UGFormTickBoxHorizontalBox::OnTickBoxSelected(UGFormTickBox* NewSelection, bool Choice)
 {
-	//If we add but we only have one element in the list
-	if (Choice && WidgetData->NumOfEntryData() == 1)
+	//If we want to add but there is no data within the first slot which will always exist
+	if (Choice && WidgetData->GetEntryData(0).EntryData.IsEmpty())
 	{
 		WidgetData->ReplaceEnteredData(0, NewSelection->WidgetData->GetEntryData(0).EntryData); 
 		return;
@@ -44,22 +44,10 @@ void UGFormTickBoxHorizontalBox::OnTickBoxSelected(UGFormTickBox* NewSelection, 
 
 	Choice ? 
 		WidgetData->AddEntryData(RowEntryID, NewSelection->WidgetData->GetEntryData(0).EntryData) :
-		WidgetData->AddEntryData(RowEntryID, NewSelection->WidgetData->GetEntryData(0).EntryData);
+		WidgetData->RemoveEntryData(RowEntryID, NewSelection->WidgetData->GetEntryData(0).EntryData);
 }
 
 TArray<FGFormInformation> UGFormTickBoxHorizontalBox::GetFormDetails()
 {
-	TArray<FGFormInformation> ReturnArray;
-
-	/*
-	* For each Box that is ticked add it's:
-	*	Entry ID for the TickBox
-	*	Data from the TickBox
-	*/
-	for (auto TickedBox : TickedBoxes)
-	{
-		/*ReturnArray.Add(FGFormInformation(TickedBox->WidgetData->GetEntryID(), TickedBox->WidgetData->GetAllEnteredData()[0]));*/
-	}
-
-	return ReturnArray;
+	return WidgetData->EntryData;
 }

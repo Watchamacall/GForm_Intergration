@@ -51,5 +51,5 @@ void UGFormMultipleChoiceHorizontalBox::OnCheckBoxSelected(UGFormMultipleChoiceB
 
 TArray<FGFormInformation> UGFormMultipleChoiceHorizontalBox::GetFormDetails()
 {
-	return TArray<FGFormInformation>();
+	return WidgetData->EntryData;
 }

@@ -36,6 +36,7 @@ protected:
 	UFUNCTION()
 	virtual void OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSelection, bool Choice);
 
+public:
 	virtual TArray<FGFormInformation> GetFormDetails() override;
 
 };

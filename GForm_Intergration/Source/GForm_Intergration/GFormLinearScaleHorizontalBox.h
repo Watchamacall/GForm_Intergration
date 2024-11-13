@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GFormWidgetSecondaryClass.h"
+#include "GFormInterface.h"
 #include "Components/HorizontalBox.h"
 #include "GFormLinearScaleHorizontalBox.generated.h"
 
@@ -13,7 +14,7 @@ class UGFormMultipleChoiceBox;
  * 
  */
 UCLASS()
-class GFORM_INTERGRATION_API UGFormLinearScaleHorizontalBox : public UHorizontalBox
+class GFORM_INTERGRATION_API UGFormLinearScaleHorizontalBox : public UHorizontalBox, public IGFormInterface
 {
 	GENERATED_BODY()
 	
@@ -39,4 +40,7 @@ protected:
 	*/
 	UFUNCTION()
 	virtual void OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSelection, bool Choice);
+
+	virtual TArray<FGFormInformation> GetFormDetails() override;
+
 };

@@ -22,3 +22,8 @@ void UGFormMultipleChoiceBox::CheckBoxDelegateRun(bool HasChecked)
 {
 		OnMultipleChoiceBoxChecked.Broadcast(this, HasChecked);
 }
+
+TArray<FGFormInformation> UGFormMultipleChoiceBox::GetFormDetails()
+{
+	return WidgetData->EntryData;
+}

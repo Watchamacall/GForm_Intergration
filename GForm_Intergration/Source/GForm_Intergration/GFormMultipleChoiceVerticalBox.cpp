@@ -43,3 +43,8 @@ void UGFormMultipleChoiceVerticalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox
 		}
 	}
 }
+
+TArray<FGFormInformation> UGFormMultipleChoiceVerticalBox::GetFormDetails()
+{
+	return WidgetData->EntryData;
+}

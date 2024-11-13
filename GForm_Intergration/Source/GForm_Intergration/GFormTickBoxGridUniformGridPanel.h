@@ -35,4 +35,8 @@ protected:
 	*/
 	UFUNCTION()
 	virtual void OnCheckBoxSelected(UGFormTickBox* NewSelection, bool Choice);
+
+public:
+	virtual TArray<FGFormInformation> GetFormDetails() override;
+
 };

@@ -22,3 +22,8 @@ void UGFormTickBox::CheckBoxDelegateRun(bool HasChecked)
 {
 	OnTickBoxChecked.Broadcast(this, HasChecked);
 }
+
+TArray<FGFormInformation> UGFormTickBox::GetFormDetails()
+{
+	return WidgetData->EntryData;
+}

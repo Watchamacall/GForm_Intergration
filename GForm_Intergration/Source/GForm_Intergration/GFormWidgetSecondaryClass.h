@@ -74,7 +74,7 @@ public:
                 break;
             }
         }
-    }
+    }   
 
     /*
     * Replaces the element at Index with the inputted InEnteredData

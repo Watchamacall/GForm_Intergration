@@ -49,17 +49,5 @@ void UGFormTickBoxVerticalBox::OnTickBoxSelected(UGFormTickBox* NewSelection, bo
 
 TArray<FGFormInformation> UGFormTickBoxVerticalBox::GetFormDetails()
 {
-	TArray<FGFormInformation> ReturnArray;
-
-	/*
-	* For each Box that is ticked add it's:
-	*	Entry ID for the TickBox
-	*	Data from the TickBox
-	*/
-	//for (auto TickedBox : TickedBoxes)
-	//{
-	//	ReturnArray.Add(FGFormInformation(TickedBox->WidgetData->GetEntryID(), TickedBox->WidgetData->GetAllEnteredData()[0]));
-	//}
-
-	return ReturnArray;
+	return WidgetData->EntryData;
 }

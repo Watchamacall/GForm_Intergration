@@ -54,13 +54,5 @@ void UGFormRatingHorizontalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox* NewS
 
 TArray<FGFormInformation> UGFormRatingHorizontalBox::GetFormDetails()
 {
-	/*
-	* Link's the Entry ID and the Entered Data based on what is in the WidgetData when calling this function. 
-	*/
-
-	TArray<FGFormInformation> ReturnArray;
-
-	//ReturnArray.Add(FGFormInformation(WidgetData->GetEntryID(), WidgetData->GetAllEnteredData()[0]));
-
-	return ReturnArray;
+	return WidgetData->EntryData;
 }

@@ -60,3 +60,8 @@ void UGFormLinearScaleHorizontalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox*
 		}
 	}
 }
+
+TArray<FGFormInformation> UGFormLinearScaleHorizontalBox::GetFormDetails()
+{
+	return WidgetData->EntryData;
+}

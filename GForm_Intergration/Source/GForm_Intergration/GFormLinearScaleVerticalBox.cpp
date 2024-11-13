@@ -59,3 +59,8 @@ void UGFormLinearScaleVerticalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox* N
 		}
 	}
 }
+
+TArray<FGFormInformation> UGFormLinearScaleVerticalBox::GetFormDetails()
+{
+	return WidgetData->EntryData;
+}

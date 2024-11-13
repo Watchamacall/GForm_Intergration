@@ -63,10 +63,19 @@ void UGFormTickBoxGridUniformGridPanel::OnCheckBoxSelected(UGFormTickBox* NewSel
 		{
 			FString RowEntryID = KnownBoxes[RowToGoThrough][0]->WidgetData->GetEntryData(0).EntryID;
 
+			int Column = Cast<UUniformGridSlot>(NewSelection->Slot)->GetColumn();
+
+			FString ColumnData = KnownBoxes[0][Column]->WidgetData->GetEntryData(0).EntryData;
+
 			//Either Add or Remove Entry Data based what is has been chosen to do
 			Choice ? 
-				WidgetData->AddEntryData(RowEntryID, *Box->WidgetData->GetEntryData(0).EntryData) : 
-				WidgetData->RemoveEntryData(RowEntryID, *Box->WidgetData->GetEntryData(0).EntryData);
+				WidgetData->AddEntryData(RowEntryID, *ColumnData) : 
+				WidgetData->RemoveEntryData(RowEntryID, *ColumnData);
 		}
 	}
+}
+
+TArray<FGFormInformation> UGFormTickBoxGridUniformGridPanel::GetFormDetails()
+{
+	return WidgetData->EntryData;
 }

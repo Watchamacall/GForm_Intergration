@@ -26,3 +26,8 @@ void UGFormShortAnswer::GFormTextCommitted(const FText& NewText)
 	WidgetData->ReplaceEnteredData(0, *NewText.ToString());
 }
 
+TArray<FGFormInformation> UGFormShortAnswer::GetFormDetails()
+{
+	return WidgetData->EntryData;
+}
+

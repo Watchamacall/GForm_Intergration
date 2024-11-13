@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/EditableTextBox.h"
+#include "GFormInterface.h"
 #include "GFormWidgetSecondaryClass.h"
 #include "GFormShortAnswer.generated.h"
 
@@ -13,7 +14,7 @@ class UPanelWidget;
  * 
  */
 UCLASS()
-class GFORM_INTERGRATION_API UGFormShortAnswer : public UEditableTextBox
+class GFORM_INTERGRATION_API UGFormShortAnswer : public UEditableTextBox, public IGFormInterface
 {
 	GENERATED_BODY()
 	
@@ -23,6 +24,10 @@ protected:
 
 	UFUNCTION()
 	virtual void GFormTextCommitted(const FText& NewText);
+
+public:
+	virtual TArray<FGFormInformation> GetFormDetails() override;
+
 public:
 	
 	/*

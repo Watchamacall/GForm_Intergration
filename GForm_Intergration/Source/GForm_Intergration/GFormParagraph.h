@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GFormWidgetSecondaryClass.h"
+#include "GFormInterface.h"
 #include "Components/MultiLineEditableTextBox.h"
 #include "GFormParagraph.generated.h"
 
@@ -11,7 +12,7 @@
  * 
  */
 UCLASS()
-class GFORM_INTERGRATION_API UGFormParagraph : public UMultiLineEditableTextBox
+class GFORM_INTERGRATION_API UGFormParagraph : public UMultiLineEditableTextBox, public IGFormInterface
 {
 	GENERATED_BODY()
 
@@ -21,6 +22,9 @@ protected:
 
 	UFUNCTION()
 	virtual void GFormTextCommitted(const FText& NewText);
+
+public:
+	virtual TArray<FGFormInformation> GetFormDetails() override;
 
 public:
 	/*

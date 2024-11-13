@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GFormWidgetSecondaryClass.h"
+#include "GFormInterface.h"
 #include "Components/VerticalBox.h"
 #include "GFormLinearScaleVerticalBox.generated.h"
 
@@ -13,7 +14,7 @@ class UGFormMultipleChoiceBox;
  * 
  */
 UCLASS()
-class GFORM_INTERGRATION_API UGFormLinearScaleVerticalBox : public UVerticalBox
+class GFORM_INTERGRATION_API UGFormLinearScaleVerticalBox : public UVerticalBox, public IGFormInterface
 {
 	GENERATED_BODY()
 	
@@ -36,5 +37,8 @@ protected:
 
 	UFUNCTION()
 	virtual void OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSelection, bool Choice);
+
+	virtual TArray<FGFormInformation> GetFormDetails() override;
+
 
 };

@@ -54,11 +54,12 @@ void UGFormMultipleChoiceBoxUniformGridPanel::OnWidgetRebuilt()
 		}
 	}
 	
-	for (auto KnownRow : KnownBoxes)
+	for (auto& KnownRow : KnownBoxes)
 	{
+		//Get the first element of the KnownRow
 		FString RowEntryID = KnownRow[0]->WidgetData->GetEntryData(0).EntryID;
 
-		if (!RowEntryID.IsEmpty())
+		if (RowEntryID.IsEmpty())
 		{
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString("The Entry ID for one of the rows is invalid. Ensure the First Element of each Row and Column has the correct information!"));
 		}
@@ -77,7 +78,16 @@ void UGFormMultipleChoiceBoxUniformGridPanel::OnCheckBoxSelected(UGFormMultipleC
 	{
 		if (Box == NewSelection)
 		{
-			WidgetData->ReplaceEnteredData(RowToGoThrough, *Box->WidgetData->GetEntryData(0).EntryData);
+			//Because only the first row and column will have data provided, need to get the appropriate data
+			int ColumnNum = Cast<UUniformGridSlot>(Box->Slot)->GetColumn();
+			FString ColumnData = KnownBoxes[0][ColumnNum]->WidgetData->GetEntryData(0).EntryData;
+
+			if (ColumnData.IsEmpty())
+			{
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString("The Column within a Multiple Choice Box is invalid, check all first columns and ensure that they have the appropriate Entry Data!"));
+			}
+			//Changes the EntryData of the provided Row
+			WidgetData->ReplaceEnteredData(RowToGoThrough, *ColumnData);
 
 			if (!Choice)
 			{
@@ -93,20 +103,5 @@ void UGFormMultipleChoiceBoxUniformGridPanel::OnCheckBoxSelected(UGFormMultipleC
 
 TArray<FGFormInformation> UGFormMultipleChoiceBoxUniformGridPanel::GetFormDetails()
 {
-	/*
-	* Get the Entry ID from the WidgetData and link it to the EnteredData which is the option which has been chosen from the ComboBox Value
-	*/
-
-	TArray<FGFormInformation> ReturnArray;
-
-	for (size_t Row = 0; Row < KnownBoxes.Num(); Row++)
-	{
-		for (size_t Column = 0; Column < KnownBoxes[Row].Num(); Column++)
-		{
-
-		}
-	}
-	//ReturnArray.Add(FGFormInformation(WidgetData->GetEntryID(), WidgetData->GetAllEnteredData()[0]));
-
-	return ReturnArray; 
+	return WidgetData->EntryData; 
 }

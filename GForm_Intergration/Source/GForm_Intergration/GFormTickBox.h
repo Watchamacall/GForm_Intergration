@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GFormWidgetSecondaryClass.h"
+#include "GFormInterface.h"
 #include "Components/CheckBox.h"
 #include "GFormTickBox.generated.h"
 
@@ -13,7 +14,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnTickBoxChecked, UGFormTickBox*, 
  * 
  */
 UCLASS()
-class GFORM_INTERGRATION_API UGFormTickBox : public UCheckBox
+class GFORM_INTERGRATION_API UGFormTickBox : public UCheckBox, public IGFormInterface
 {
 	GENERATED_BODY()
 	
@@ -36,4 +37,8 @@ protected:
 	
 	UFUNCTION()
 	virtual void CheckBoxDelegateRun(bool HasChecked);
+
+public:
+	virtual TArray<FGFormInformation> GetFormDetails() override;
+
 };
