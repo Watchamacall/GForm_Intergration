@@ -3,7 +3,13 @@
 //Change this value if GForms changes the Maximum value that the Linear Scale can go to
 #define LINEAR_SCALE_MAX 10
 #define RATING_SCALE_MAX 9
-
+#define HOUR_TIME_MAX 23
+#define MINUTE_TIME_MAX 59
+#define TIME_MAX_CHAR 2
+#define YEAR_MAX_CHAR 4
+#define DAY_MAX 31
+#define MONTH_MAX 12
+#define YEAR_MAX 9999
 #pragma once
 
 #include "CoreMinimal.h"
