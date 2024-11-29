@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.8",
+	"FriendlyName": "GFormPlugin",
+	"Description": "Plugin for Google Form intergration within Unreal Engine's UMG Designer",
+	"Category": "UI",
+	"CreatedBy": "Watchamacall",
+	"CreatedByURL": "https://watchamacall.co.uk",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "GFormPlugin",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
