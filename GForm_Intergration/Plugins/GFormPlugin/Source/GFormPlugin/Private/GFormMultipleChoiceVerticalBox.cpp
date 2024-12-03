@@ -13,23 +13,23 @@ void UGFormMultipleChoiceVerticalBox::OnWidgetRebuilt()
 
 	FGFormMultipleChoiceLogic::InitialiseComponent(WidgetData, this, KnownBoxes);
 
-	//if (!WidgetData)
-	//	WidgetData = NewObject<UGFormDataComponent>(this);
+	/*if (!WidgetData)
+		WidgetData = NewObject<UGFormDataComponent>(this);
 
-	//KnownBoxes.Empty();
+	KnownBoxes.Empty();
 
-	//TArray<UWidget*> Children = GetAllChildren();
+	TArray<UWidget*> Children = GetAllChildren();
 
-	//for (size_t i = 0; i < Children.Num(); i++)
-	//{
-	//	if (UGFormMultipleChoiceBox* CastedChild = Cast<UGFormMultipleChoiceBox>(Children[i]))
-	//	{
-	//		//Add the functionality for when a Multiple Choice Box is selected
-	//		CastedChild->OnMultipleChoiceBoxChecked.AddUniqueDynamic(this, &UGFormMultipleChoiceVerticalBox::OnCheckBoxSelected);
+	for (size_t i = 0; i < Children.Num(); i++)
+	{
+		if (UGFormMultipleChoiceBox* CastedChild = Cast<UGFormMultipleChoiceBox>(Children[i]))
+		{
+			//Add the functionality for when a Multiple Choice Box is selected
+			CastedChild->OnMultipleChoiceBoxChecked.AddUniqueDynamic(this, &UGFormMultipleChoiceVerticalBox::OnCheckBoxSelected);
 
-	//		KnownBoxes.Add(CastedChild);
-	//	}
-	//}
+			KnownBoxes.Add(CastedChild);
+		}
+	}*/
 }
 
 void UGFormMultipleChoiceVerticalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSelection, bool Choice)

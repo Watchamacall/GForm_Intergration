@@ -57,8 +57,6 @@ public:
 protected:
     virtual TSharedRef<SWidget> RebuildWidget() override;
 
-    virtual void SynchronizeProperties() override;
-
     virtual TArray<FGFormInformation> GetFormDetails();
 
 private:

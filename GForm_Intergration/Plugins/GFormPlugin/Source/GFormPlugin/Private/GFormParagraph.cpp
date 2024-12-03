@@ -15,11 +15,10 @@ void UGFormParagraph::SynchronizeProperties()
 {
 	Super::SynchronizeProperties();
 
-	OnTextChanged.AddUniqueDynamic(this, &UGFormParagraph::GFormTextCommitted);
-
+	OnTextCommitted.AddUniqueDynamic(this, &UGFormParagraph::GFormTextCommitted);
 }
 
-void UGFormParagraph::GFormTextCommitted(const FText& NewText)
+void UGFormParagraph::GFormTextCommitted(const FText& NewText, ETextCommit::Type CommitMethod)
 {
 	WidgetData->ReplaceEnteredData(0, *NewText.ToString());
 }

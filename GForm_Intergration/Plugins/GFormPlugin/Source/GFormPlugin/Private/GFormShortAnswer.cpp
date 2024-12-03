@@ -16,12 +16,10 @@ void UGFormShortAnswer::SynchronizeProperties()
 {
 	Super::SynchronizeProperties();
 
-	OnTextChanged.AddUniqueDynamic(this, &UGFormShortAnswer::GFormTextCommitted);
-
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString("Data has been added to the main area!"));
+	OnTextCommitted.AddUniqueDynamic(this, &UGFormShortAnswer::GFormTextCommitted);
 }
 
-void UGFormShortAnswer::GFormTextCommitted(const FText& NewText)
+void UGFormShortAnswer::GFormTextCommitted(const FText& NewText, ETextCommit::Type CommitMethod)
 {
 	WidgetData->ReplaceEnteredData(0, *NewText.ToString());
 }

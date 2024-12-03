@@ -4,6 +4,7 @@
 
 #include "GFormLinearScaleHorizontalBox.h"
 #include "GFormMultipleChoiceBox.h"
+#include "GFormMultipleChoiceLogic.h"
 #include "Blueprint/WidgetTree.h"
 #include "Components/CheckBox.h"
 
@@ -11,7 +12,8 @@ void UGFormLinearScaleHorizontalBox::OnWidgetRebuilt()
 {
 	Super::OnWidgetRebuilt();
 
-	if (!WidgetData)
+	FGFormMultipleChoiceLogic::InitialiseComponent(WidgetData, this, KnownBoxes, MinimumValue);
+	/*if (!WidgetData)
 		WidgetData = NewObject<UGFormDataComponent>(this);
 	
 	KnownBoxes.Empty();
@@ -43,12 +45,13 @@ void UGFormLinearScaleHorizontalBox::OnWidgetRebuilt()
 
 			KnownBoxes.Add(CastedChild);
 		}
-	}
+	}*/
 }
 
 void UGFormLinearScaleHorizontalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSelection, bool Choice)
 {
-	for (UGFormMultipleChoiceBox* Box : KnownBoxes)
+	FGFormMultipleChoiceLogic::HandleSelectedMultipleChoiceBox(WidgetData, NewSelection, Choice, KnownBoxes);
+	/*for (UGFormMultipleChoiceBox* Box : KnownBoxes)
 	{
 		if (Box == NewSelection)
 		{
@@ -58,7 +61,7 @@ void UGFormLinearScaleHorizontalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox*
 		{
 			Box->SetCheckedState(ECheckBoxState::Unchecked);
 		}
-	}
+	}*/
 }
 
 TArray<FGFormInformation> UGFormLinearScaleHorizontalBox::GetFormDetails()

@@ -44,6 +44,7 @@ public:
 protected:
 	virtual void OnWidgetRebuilt() override;
 
+public:
 	/*
 	* Called when a Multiple Choice Box has been triggered as "ON" and calls this to shut off the other choices
 	*/

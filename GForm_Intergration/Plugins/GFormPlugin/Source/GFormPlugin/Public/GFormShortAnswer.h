@@ -23,7 +23,7 @@ protected:
 	virtual void SynchronizeProperties() override;
 
 	UFUNCTION()
-	virtual void GFormTextCommitted(const FText& NewText);
+	virtual void GFormTextCommitted(const FText& NewText, ETextCommit::Type CommitMethod);
 
 public:
 	virtual TArray<FGFormInformation> GetFormDetails() override;

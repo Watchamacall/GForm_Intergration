@@ -5,12 +5,15 @@
 #include "GFormMultipleChoiceBox.h"
 #include "Blueprint/WidgetTree.h"
 #include "Components/CheckBox.h"
+#include <GFormMultipleChoiceLogic.h>
 
 void UGFormLinearScaleVerticalBox::OnWidgetRebuilt()
 {
 	Super::OnWidgetRebuilt();
 
-	if (!WidgetData)
+	FGFormMultipleChoiceLogic::InitialiseComponent(WidgetData, this, KnownBoxes);
+	 
+	/*if (!WidgetData)
 		WidgetData = NewObject<UGFormDataComponent>(this);
 
 	KnownBoxes.Empty();
@@ -42,12 +45,14 @@ void UGFormLinearScaleVerticalBox::OnWidgetRebuilt()
 
 			KnownBoxes.Add(CastedChild);
 		}
-	}
+	}*/
 }
 
 void UGFormLinearScaleVerticalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSelection, bool Choice)
 {
-	for (UGFormMultipleChoiceBox* Box : KnownBoxes)
+	FGFormMultipleChoiceLogic::HandleSelectedMultipleChoiceBox(WidgetData, NewSelection, Choice, KnownBoxes);
+
+	/*for (UGFormMultipleChoiceBox* Box : KnownBoxes)
 	{
 		if (Box == NewSelection)
 		{
@@ -57,7 +62,7 @@ void UGFormLinearScaleVerticalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox* N
 		{
 			Box->SetCheckedState(ECheckBoxState::Unchecked);
 		}
-	}
+	}*/
 }
 
 TArray<FGFormInformation> UGFormLinearScaleVerticalBox::GetFormDetails()

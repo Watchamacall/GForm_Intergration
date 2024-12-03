@@ -147,10 +147,6 @@ TSharedRef<SWidget> UGFormTime::RebuildWidget()
         ];
 }
 
-void UGFormTime::SynchronizeProperties()
-{
-}
-
 TArray<FGFormInformation> UGFormTime::GetFormDetails()
 {
     return WidgetData->EntryData;

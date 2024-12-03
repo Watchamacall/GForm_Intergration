@@ -13,7 +13,19 @@ class UPanelWidget;
 class GFORMPLUGIN_API FGFormMultipleChoiceLogic
 {
 public:
-	static void InitialiseComponent(UGFormDataComponent*& WidgetData, UPanelWidget* Panel, TArray<UGFormMultipleChoiceBox*>& KnownBoxes);
+	/*
+	* Initalises the Multiple Choice Panel Widget with all the required logic to setup the GFormWidget
+	* StartNum will only be used on LinearScale and Rating
+	*/
+	static void InitialiseComponent(UGFormDataComponent*& WidgetData, UPanelWidget* Panel, TArray<UGFormMultipleChoiceBox*>& KnownBoxes, int32 StartNum = 0);
 
+	/*
+	* Handles the logic when pressing a MultipleChoiceBox, does all the hard work for you
+	*/
 	static void HandleSelectedMultipleChoiceBox(UGFormDataComponent* WidgetData, UGFormMultipleChoiceBox* SelectedMultipleChoiceBox, bool Choice, TArray<UGFormMultipleChoiceBox*>& KnownBoxes);
+
+	/*
+	* Checking the Overhead 
+	*/
+	static void LinearScaleOverheadCheck(UPanelWidget* Panel, TArray<UGFormMultipleChoiceBox*>& KnownBoxes, int32 StartNum = 0);
 };

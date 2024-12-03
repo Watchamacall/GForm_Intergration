@@ -3,12 +3,15 @@
 
 #include "GFormRatingVerticalBox.h"
 #include "GFormMultipleChoiceBox.h"
+#include "GFormMultipleChoiceLogic.h"
 
 void UGFormRatingVerticalBox::OnWidgetRebuilt()
 {
 	Super::OnWidgetRebuilt();
 
-	if (!WidgetData)
+	FGFormMultipleChoiceLogic::InitialiseComponent(WidgetData, this, KnownBoxes, 1);
+
+	/*if (!WidgetData)
 		WidgetData = NewObject<UGFormDataComponent>(this);
 
 	KnownBoxes.Empty();
@@ -34,12 +37,13 @@ void UGFormRatingVerticalBox::OnWidgetRebuilt()
 
 			KnownBoxes.Add(CastedChild);
 		}
-	}
+	}*/
 }
 
 void UGFormRatingVerticalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSelection, bool Choice)
 {
-	for (UGFormMultipleChoiceBox* Box : KnownBoxes)
+	FGFormMultipleChoiceLogic::HandleSelectedMultipleChoiceBox(WidgetData, NewSelection, Choice, KnownBoxes);
+	/*for (UGFormMultipleChoiceBox* Box : KnownBoxes)
 	{
 		if (Box == NewSelection)
 		{
@@ -49,7 +53,7 @@ void UGFormRatingVerticalBox::OnCheckBoxSelected(UGFormMultipleChoiceBox* NewSel
 		{
 			Box->SetCheckedState(ECheckBoxState::Unchecked);
 		}
-	}
+	}*/
 }
 
 TArray<FGFormInformation> UGFormRatingVerticalBox::GetFormDetails()
