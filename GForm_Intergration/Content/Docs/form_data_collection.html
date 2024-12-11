@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Get All Necessary Data Out of Your Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>How to Get All Necessary Data Out of Your Form</h1>
+    </header>
+
+    <main>
+        <section class="instructions">
+            <ul>
+                <li>
+                    Create your Google Form with all your necessary form questions. You will only need to specify what the Options are for each question in order for this to work as intended.
+                </li>
+                <li>
+                    Once you have created your Google Form, click on the three dots at the top of the page and press 'Get pre-filled link'.
+                    <button class="toggle-btn">Toggle Image</button>
+                    <img src="Images/Get_Prefilled_Link.png" alt="Getting Prefilled Link" class="toggle-image">
+                </li>
+                <li>
+                    Fill out the form with dummy information, putting 'Test' in Short Answer or Paragraph questions, for example.
+                    <button class="toggle-btn">Toggle Image</button>
+                    <img src="Images/Test_Form_Filling.png" alt="Test Form Filling" class="toggle-image">                
+                </li>
+                <span class="important-note">
+                    Note - Put an answer for every question in order to get the Unique IDs to use later.
+                </span>
+                <li>
+                    Once the questions have been answered, click the 'Get link' button, going to the bottom-left of the page and clicking the new 'Copy Link' button and paste the now copied URL into a word-processing application like Notepad or Word.
+                    <button class="toggle-btn">Toggle Image</button>
+                    <img src="Images/Get_Link.png" alt="Get Link" class="toggle-image">                </li>
+            </ul>
+        </section>
+
+        <section class="url-section">
+            <h2>Your copied URL should look like this:</h2>
+            <div class="url-box">
+                https://docs.google.com/forms/d/e/1FAIpQLSe5HAzVoJPuWWWbEVR_c4OX8f3EMquAetYXSg0oS7rTmubEug/viewform?usp=pp_url&entry.1705956432=Test&entry.38227686=Test&entry.465722968=Option+1&entry.1551653715=Option+1&entry.1190420673=Option+1&entry.788651651=0&entry.1172469355=1&entry.1030865986=Column+1&entry.1942196346=Column+1&entry.28085447=Column+1&entry.185543132=Column+1&entry.2050845051=Column+1&entry.1811397089=Column+1&entry.602579736=2024-01-01&entry.1361589032=01:01
+            </div>
+        </section>
+
+        <section class="url-section">
+            <h2>Dissect the URL as follows:</h2>
+            <pre class="url-box">
+https://docs.google.com/forms/d/e/
+1FAIpQLSe5HAzVoJPuWWWbEVR_c4OX8f3EMquAetYXSg0oS7rTmubEug
+/viewform?usp=pp_url
+&entry.1705956432=Test+Short+Answer 
+&entry.38227686=Test+Paragraph 
+&entry.465722968=Option+1
+&entry.1551653715=Option+1
+&entry.1190420673=Option+1
+&entry.788651651=0
+&entry.1172469355=1
+&entry.1030865986=Column+1
+&entry.1942196346=Column+1
+&entry.28085447=Column+1
+&entry.185543132=Column+1
+&entry.2050845051=Column+1
+&entry.1811397089=Column+1
+&entry.602579736=2024-01-01
+&entry.1361589032=01:01
+            </pre>
+        </section>
+
+        <section class="instructions">
+            <ul>
+                <li>
+                    As you can see, the Unique ID for the Form was new-lined out alongside each Unique Entry ID for each question, the numerical value found between '.' and '=' is the Unique Entry ID.
+                    <button class="toggle-btn">Toggle Image</button>
+                    <img src="Images/Exact_Unique_ID.png" alt="Step 1 Image" class="toggle-image">
+                </li>
+                <span class="important-note">
+                    <p>
+                    Note - Indicate which Entry ID is for which question, this can be done by going through your questionairre and noting which Entry is listed in sequential order. For example, in mine I had a Short Answer then a Paragraph, so 'entry.1705956432' is my Short Answer and 'entry.38227686' is my paragraph.
+                    </p>
+                    <p>
+                    Note - If you have TickBoxes and have selected multiple of them on the same question, you will have multiple of the same Entry IDs, you only need it once in order for this to work.
+                    </p>
+                </span>
+            </ul>
+        </section>
+
+        <footer>
+            <p>This is all the important information you need for your Form to work in GForm. Move onto: <a href="#">Creating your first GForm</a> to continue your Form extravaganza!</p>
+        </footer>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
