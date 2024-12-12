@@ -5,6 +5,7 @@
 #include "Components/HorizontalBoxSlot.h"
 #include "Styling/UMGCoreStyle.h"
 #include "Components/VerticalBoxSlot.h"
+#include "UObject/ConstructorHelpers.h"
 #include "Engine/Font.h"
 
 UGFormTime::UGFormTime()

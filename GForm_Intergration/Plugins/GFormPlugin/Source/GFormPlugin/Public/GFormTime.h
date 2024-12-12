@@ -92,20 +92,20 @@ protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "GForm")
     UGFormDataComponent* WidgetData;
 
-    UPROPERTY(BlueprintReadWrite, meta=(BindWidget))
+    UPROPERTY(BlueprintReadWrite, meta=(BindWidget), Category = "GForm")
     UVerticalBox* HourVerticalBox;
 
-    UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+    UPROPERTY(BlueprintReadWrite, meta = (BindWidget), Category = "GForm")
     UVerticalBox* MinuteVerticalBox;
 
     /** Hour Text Box */
-    UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+    UPROPERTY(BlueprintReadWrite, meta = (BindWidget), Category = "GForm")
     UEditableText* HourTextBox;
 
     UPROPERTY()
     UTextBlock* ColonTextBlock;
 
     /**  Minute Text Box. */
-    UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+    UPROPERTY(BlueprintReadWrite, meta = (BindWidget), Category = "GForm")
     UEditableText* MinuteTextBox;
 };

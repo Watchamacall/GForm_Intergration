@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Get All Necessary Data Out of Your Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Creating Your First GForm</h1>
+    </header>
+
+    <nav class="navbar">
+        <a href="Index.html">Home</a>
+        <a href="form_data_collection.html">Form Collection</a>
+        <a href="first_gform.html">Creating 1st GForm</a>
+    </nav>
+
+    <main>
+        <section class="instructions">
+            <ul>
+                <li>
+                    Create a new UserWidget Blueprint with the parent class of 'GFormUserWidget'
+                    <button class="toggle-btn">Toggle Image</button>
+                    <img src="Images/Get_Prefilled_Link.png" alt="Getting Prefilled Link" class="toggle-image">
+                </li>
+                <li>
+                    Create your widget and form however you see fit, adding the respective GForm Widget with each question, here are all the Respective GForm Widgets and what the Google Form Question is:
+                    <pre>
+                    Short Answer - GForm Short Answer
+                    Paragraph - GForm Paragraph
+                    Multiple-Choice - GForm Multiple-Choice (Horizontal / Vertical Box)
+                    Tick Box - GForm TickBox (Horizontal / Vertical Box)
+                    Drop-Down - GForm Drop Down Combo Box String
+                    Linear Scale - GForm Linear Scale (Horizontal / Vertical Box)
+                    Rating - GForm Rating (Horizontal / Vertical Box)
+                    Multiple-Choice Grid - GForm Multiple-Choice Grid
+                    TickBox Grid - GForm TickBox Grid
+                    Date - GForm Date
+                    Time - GForm Time
+                    Submit - GForm Submit Button
+                    </pre>
+                </li>
+                <li>
+                    With your GForm Widget assembled, you will need to add the Multiple-Choice Boxes or TickBoxes for each of their respective Widgets, Multiple-Choice Boxes for the Multiple-Choice Horizontal Box for example. Add the same amount of boxes that exist in the Google Form.
+                    <button class="toggle-btn">Toggle Image</button>
+                    <img src="Images/Test_Form_Filling.png" alt="Test Form Filling" class="toggle-image">                
+                </li>
+                <li>
+                    With all that accomplished, the only thing to do now is to add the Unique information for each Widget, the place to add the information is found in 'GForm|Entry|EntryData'. Follow the instructions below for each Widget and complete the form!
+                </li>
+
+                <button class="toggle-btn">Short Answer</button> 
+                <div class="toggle-div">
+                    Place the Unique Entry ID into the EntryID of the first element in the EntryData Array
+                    <img src="Images/Entry_ID_Only.png" alt="Test Form Filling"> 
+                </div>
+
+                <button class="toggle-btn">Paragraph</button> 
+                <div class="toggle-div">
+                    Place the Unique Entry ID into the EntryID of the first element in the EntryData Array
+                    <img src="Images/Entry_ID_Only.png" alt="Test Form Filling"> 
+                </div>
+
+                <button class="toggle-btn">Multiple-Choice</button> 
+                <div class="toggle-div">
+                    Place the Unique Entry ID into the Entry ID of the Horizontal/Vertical Box's first element in the EntryData array
+                    <img src="Images/Entry_ID_Only.png" alt="Test Form Filling"> 
+                    For each of the Boxes, add the Data that it holds, exactly how it's done in Google Forms, the easiest way is to copy paste the Option directly from Google Forms
+                    <img src="Images/Entry_Data_Only.png" alt="Test Form Filling"> 
+                </div>
+
+                <button class="toggle-btn">Tick Box</button> 
+                <div class="toggle-div">
+                    Place the Unique Entry ID into the Entry ID of the Horizontal/Vertical Box's first element in the EntryData array
+                    <img src="Images/Entry_ID_Only.png" alt="Test Form Filling"> 
+                    For each of the Boxes, add the Data that it holds, exactly how it's done in Google Forms, the easiest way is to copy paste the Option directly from Google Forms
+                    <img src="Images/Entry_Data_Only.png" alt="Test Form Filling"> 
+                </div>
+
+                <button class="toggle-btn">Drop-Down</button> 
+                <div class="toggle-div">
+                    Place the Unique Entry ID into the EntryID of the first element in the EntryData Array
+                    <img src="Images/Entry_ID_Only.png" alt="Test Form Filling"> 
+                </div class="toggle-div">
+
+                <button class="toggle-btn">Linear Scale</button> 
+                <div class="toggle-div">
+                    Place the Unique Entry ID into the EntryID of the first element in the EntryData Array
+                    <img src="Images/Entry_ID_Only.png" alt="Test Form Filling"> 
+                </div>
+
+                <button class="toggle-btn">Rating</button> 
+                <div class="toggle-div">
+                    Place the Unique Entry ID into the EntryID of the first element in the EntryData Array
+                    <img src="Images/Entry_ID_Only.png" alt="Test Form Filling"> 
+                </div>
+
+                <button class="toggle-btn">Multiple-Choice Grid</button> 
+                <div class="toggle-div">
+                    Only add the following elements to the first Row or Column Box in the Grid
+                    <ul>
+                        <li>
+                            Row - The Unique Entry ID into the EntryID of the first element in the EntryData Array
+                            <img src="Images/Entry_ID_Only.png" alt="Test Form Filling"> 
+                        </li>
+                        <li>
+                            Column - The Data that it holds, exactly how it's done in Google Forms, the easiest way is to copy paste the Option directly from Google Forms
+                            <img src="Images/Entry_Data_Only.png" alt="Test Form Filling"> 
+                        </li>
+                    </ul>
+                    <span class="important-note">
+                        Note - This only needs to be done on the first of each row and column, no need to do it for each Box, the first grid box will have both filled out
+                    </span>
+                    <img src="Images/Grid_00.png" alt="Test Form Filling"> 
+                </div>
+
+                <button class="toggle-btn">Tick Box Grid</button> 
+                <div class="toggle-div">
+                    Only add the following elements to the first Row or Column Box in the Grid
+                    <ul>
+                        <li>
+                            Row - The Unique Entry ID into the EntryID of the first element in the EntryData Array
+                            <img src="Images/Entry_ID_Only.png" alt="Test Form Filling"> 
+                        </li>
+                        <li>
+                            Column - The Data that it holds, exactly how it's done in Google Forms, the easiest way is to copy paste the Option directly from Google Forms
+                            <img src="Images/Entry_Data_Only.png" alt="Test Form Filling"> 
+                        </li>
+                    </ul>
+                    <span class="important-note">Note - This only needs to be done on the first of each row and column, no need to do it for each Box, the first grid box will have both filled out</span>
+                    <img src="Images/Grid_00.png" alt="Test Form Filling"> 
+                </div>
+
+                <button class="toggle-btn">Time</button> 
+                <div class="toggle-div">
+                    Place the Unique Entry ID into the EntryID of the first element in the EntryData Array
+                    <img src="Images/Entry_ID_Only.png" alt="Test Form Filling"> 
+                </div>
+
+                <button class="toggle-btn">Date</button> 
+                <div class="toggle-div">
+                    Place the Unique Entry ID into the EntryID of the first element in the EntryData Array
+                    <img src="Images/Entry_ID_Only.png" alt="Test Form Filling"> 
+                </div>
+
+                <button class="toggle-btn">User Widget</button> 
+                <div class="toggle-div">
+                    In the 'Graph' tab, go to the 'Class Defaults' and add the Unique ID to the 'GForm|URL|URLCode' string
+                    <img src="Images/URL_Code.png" alt="Test Form Filling"> 
+                </div>
+
+                </li>
+                
+                
+            </ul>
+        </section>
+
+        <footer>
+            <p>Well done! You have just created your first GForm! Now add it to your viewport and test. If all goes well, when you click the submit button you should see the answers pop up in the Responses tab of Google Forms.</p>
+        </footer>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

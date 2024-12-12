@@ -18,7 +18,9 @@
 		{
 			"Name": "GFormPlugin",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
-		}
-	]
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": ["Win64"]
+        }
+    ],
+    "PlatformAllowList": ["Win64"]
 }

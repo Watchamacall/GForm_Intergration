@@ -3,6 +3,7 @@
 
 #include "GFormDate.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "UObject/ConstructorHelpers.h"
 #include "Engine/Font.h"
 
 

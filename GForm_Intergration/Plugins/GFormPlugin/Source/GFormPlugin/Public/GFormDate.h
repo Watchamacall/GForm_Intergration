@@ -36,25 +36,25 @@ protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "GForm")
     UGFormDataComponent* WidgetData;
 
-    UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+    UPROPERTY(BlueprintReadWrite, meta = (BindWidget), Category = "GForm")
     UVerticalBox* DayVerticalBox;
 
-    UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+    UPROPERTY(BlueprintReadWrite, meta = (BindWidget), Category = "GForm")
     UVerticalBox* MonthVerticalBox;
     
-    UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+    UPROPERTY(BlueprintReadWrite, meta = (BindWidget), Category = "GForm")
     UVerticalBox* YearVerticalBox;
 
     /** Day Text Box */
-    UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+    UPROPERTY(BlueprintReadWrite, meta = (BindWidget), Category = "GForm")
     UEditableText* DayTextBox;
 
     /**  Month Text Box. */
-    UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+    UPROPERTY(BlueprintReadWrite, meta = (BindWidget), Category = "GForm")
     UEditableText* MonthTextBox;
     
     /**  Year Text Box. */
-    UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+    UPROPERTY(BlueprintReadWrite, meta = (BindWidget), Category = "GForm")
     UEditableText* YearTextBox;
 
     UPROPERTY()

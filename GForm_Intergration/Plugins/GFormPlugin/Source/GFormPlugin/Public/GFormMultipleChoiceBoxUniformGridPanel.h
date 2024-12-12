@@ -6,6 +6,7 @@
 #include "GFormWidgetSecondaryClass.h"
 #include "GFormInterface.h"
 #include "Components/UniformGridPanel.h"
+#include "Engine/Engine.h"
 #include "GFormMultipleChoiceBoxUniformGridPanel.generated.h"
 
 class GFormMultipleChoiceBox;
